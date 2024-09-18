@@ -1,0 +1,35 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #5de062;
+}
+
+h1 {
+    margin: 20px 0;
+}
+
+.controls {
+    margin-bottom: 20px;
+}
+
+input, button {
+    padding: 10px;
+    margin: 5px;
+}
+
+.array-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 600px;
+    margin: 20px;
+    border: 5px solid #0c0c0b;
+    background-color: #e1d2c9;
+}
+
+.bar {
+    margin: 3px;
+    background-color: rgb(90, 42, 233);
+    width: 30px;
+    display: inline-block;
+}
