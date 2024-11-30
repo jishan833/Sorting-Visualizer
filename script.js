@@ -23,8 +23,8 @@ function visualizeArray(arr) {
     arr.forEach(value => {
         const bar = document.createElement('div');
         bar.classList.add('bar');
-        bar.style.height = `${value * 10}px`;
-        bar.style.width = '15px';
+        bar.style.height = `${value * 20}px`;
+        bar.style.width = '10px';
         bar.style.backgroundColor = barColor;
         bar.style.margin = '0 2px';
         bar.style.display = 'inline-block';
@@ -33,11 +33,11 @@ function visualizeArray(arr) {
         const label = document.createElement('span');
         label.innerText = value;
         label.style.position = 'absolute';
-        label.style.bottom = '10';
+        label.style.bottom = '5';
         label.style.width = '100%';
         label.style.textAlign = 'center';
         label.style.color = 'white';
-        label.style.fontSize = '10px';
+        label.style.fontSize = '5px';
 
         bar.appendChild(label);
         container.appendChild(bar);
