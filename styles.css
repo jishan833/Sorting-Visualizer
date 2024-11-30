@@ -1,27 +1,25 @@
-/* Apply flexbox to the entire body */
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #0b0c1f;
+    background-color: #0b0c1f; /* Dark background */
     color: white;
-    height: 100vh;               /* Take full viewport height */
-    display: flex;                /* Use flexbox layout */
-    flex-direction: column;       /* Arrange elements vertically */
-    justify-content: center;      /* Center the content vertically */
-    align-items: center;          /* Center the content horizontally */
-    margin: 0;                    /* Remove default margin */
 }
 
-/* Center the controls inside the flex container */
+h1 {
+    margin: 20px 0;
+    font-size: 2.5rem;
+}
+
 .controls {
     display: flex;
-    flex-direction: row;          /* Arrange items horizontally */
-    justify-content: center;      /* Center the buttons horizontally */
-    gap: 15px;                    /* Space between buttons */
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin: 20px 0;
 }
 
-/* Style the select, button, and input elements */
-select, button, input {
+select, button {
     padding: 10px;
     margin: 5px;
     font-size: 1rem;
@@ -29,7 +27,6 @@ select, button, input {
     border-radius: 5px;
 }
 
-/* Additional button styling */
 button {
     cursor: pointer;
 }
@@ -40,7 +37,6 @@ button {
     font-weight: bold;
 }
 
-/* Style for the container displaying the array (visualization) */
 .array-container {
     display: flex;
     justify-content: center;
@@ -48,9 +44,10 @@ button {
     height: 400px;
     margin: 20px;
     border: 3px solid white;
-    background-color: #1e1f3b;
+    background-color: #1e1f3b; /* Darker container */
     padding: 10px;
 }
+
 
 
 .bar {
