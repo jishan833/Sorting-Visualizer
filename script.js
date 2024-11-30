@@ -1,9 +1,8 @@
 let array = [];
 
-function generateArray() 
-{
-    const arrayInput = document.getElementById('arrayInput').value;
-    array = arrayInput.split(',').map(Number);
+function randomizeArray() {
+    const size = parseInt(document.getElementById('arraySizeSelect').value);
+    array = Array.from({ length: size }, () => Math.floor(Math.random() * 50) + 1); // Random values between 1-50
     visualizeArray(array);
 }
 
