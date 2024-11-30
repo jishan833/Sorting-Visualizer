@@ -33,7 +33,7 @@ function visualizeArray(arr) {
         const label = document.createElement('span');
         label.innerText = value;
         label.style.position = 'absolute';
-        label.style.bottom = '0';
+        label.style.bottom = '1';
         label.style.width = '100%';
         label.style.textAlign = 'center';
         label.style.color = 'white';
