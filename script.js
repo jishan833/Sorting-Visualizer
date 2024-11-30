@@ -9,25 +9,15 @@ function generateArray()
 
 function visualizeArray(arr) {
     const container = document.getElementById('arrayContainer');
-    container.innerHTML = ''; // Clear existing bars
+    container.innerHTML = ''; 
+    const barColor = document.getElementById('barColorSelect').value; // Get selected color
+
     arr.forEach(value => {
         const bar = document.createElement('div');
         bar.classList.add('bar');
-        bar.style.height = `${value * 10}px`; // Scale bar height
-        bar.style.position = 'relative'; // Set relative positioning for the bar
-        bar.style.color = 'white'; // Set text color
-        bar.style.fontSize = '15px'; // Set text size
-        bar.style.textAlign = 'center'; // Align text to center
-        
-        // Add the number as text inside the bar
-        const number = document.createElement('div');
-        number.innerText = value;
-        number.style.position = 'absolute';
-        number.style.bottom = '1'; // Position text at the bottom
-        number.style.width = '100%';
-        
-        bar.appendChild(number); // Add the text to the bar
-        container.appendChild(bar); // Add the bar to the container
+        bar.style.height = `${value * 10}px`; 
+        bar.style.backgroundColor = barColor; // Apply the selected color
+        container.appendChild(bar);
     });
 }
 
@@ -128,6 +118,14 @@ async function swapAndVisualize(i, j) {
     visualizeArray(array);
 }
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+function sleep() {
+    const speed = parseInt(document.getElementById('speedSelect').value); // Get selected speed
+    return new Promise(resolve => setTimeout(resolve, speed));
+}
+
+function startSort() {
+    const algorithm = document.getElementById('algorithmSelect').value;
+    if (typeof window[algorithm] === 'function') {
+        window[algorithm](); // Dynamically call the selected sorting function
+    }
 }
