@@ -33,11 +33,11 @@ function visualizeArray(arr) {
         const label = document.createElement('span');
         label.innerText = value;
         label.style.position = 'absolute';
-        label.style.bottom = '1';
+        label.style.bottom = '15';
         label.style.width = '100%';
         label.style.textAlign = 'center';
         label.style.color = 'white';
-        label.style.fontSize = '12px';
+        label.style.fontSize = '10px';
 
         bar.appendChild(label);
         container.appendChild(bar);
