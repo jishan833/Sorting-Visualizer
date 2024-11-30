@@ -30,12 +30,6 @@ button {
     cursor: pointer;
 }
 
-#randomizeArray {
-    background-color: red;
-    color: white;
-    font-weight: bold;
-}
-
 #sortButton {
     background-color: green;
     color: white;
@@ -62,6 +56,6 @@ button {
 
 p {
     margin-top: 20px;
-    font-style: italic;
+    font-style: bold;
     font-size: 1rem;
 }
