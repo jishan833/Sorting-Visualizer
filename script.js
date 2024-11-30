@@ -136,8 +136,10 @@ function sleep() {
 }
 
 function StartSort() {
-    const algorithm = document.getElementById('algorithmSelect').value;
+    const algorithm = document.getElementById('AlgorithmSelect').value;
     if (typeof window[algorithm] === 'function') {
-        window[algorithm](); // Dynamically call the selected sorting function
+        window[algorithm]();
+    } else {
+        alert('Invalid sorting algorithm selected.');
     }
 }
