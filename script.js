@@ -1,71 +1,93 @@
 let array = [];
 
-function generateArray() 
-{
+// Generates the array from user input and visualizes it
+function generateArray() {
     const arrayInput = document.getElementById('arrayInput').value;
-    array = arrayInput.split(',').map(Number);
-    visualizeArray(array);
+    try {
+        array = arrayInput.split(',').map(Number);
+        if (array.some(isNaN)) throw new Error('Invalid input: Please enter only numbers separated by commas.');
+        visualizeArray(array);
+    } catch (error) {
+        alert(error.message);
+        array = [];
+        document.getElementById('arrayContainer').innerHTML = '';
+    }
 }
 
+// Visualizes the array
 function visualizeArray(arr) {
     const container = document.getElementById('arrayContainer');
-    container.innerHTML = ''; 
-    const barColor = document.getElementById('barColorSelect').value; // Get selected color
+    container.innerHTML = '';
+    const barColor = document.getElementById('barColorSelect').value;
 
     arr.forEach(value => {
         const bar = document.createElement('div');
         bar.classList.add('bar');
-        bar.style.height = `${value * 10}px`; 
-        bar.style.position = 'relative'; 
-        bar.style.color = 'white'; 
-        bar.style.fontSize = '15px'; 
-        bar.style.textAlign = 'center'; 
-        
-        const number = document.createElement('div');
-        number.innerText = value;
-        number.style.position = 'absolute';
-        number.style.bottom = '1'; 
-        number.style.width = '100%';
-        
-        bar.appendChild(number); 
-        bar.style.backgroundColor = barColor; // Apply the selected color
+        bar.style.height = `${value * 10}px`;
+        bar.style.width = '20px';
+        bar.style.backgroundColor = barColor;
+        bar.style.margin = '0 2px';
+        bar.style.display = 'inline-block';
+        bar.style.position = 'relative';
+
+        const label = document.createElement('span');
+        label.innerText = value;
+        label.style.position = 'absolute';
+        label.style.bottom = '0';
+        label.style.width = '100%';
+        label.style.textAlign = 'center';
+        label.style.color = 'white';
+        label.style.fontSize = '12px';
+
+        bar.appendChild(label);
         container.appendChild(bar);
     });
 }
 
+// Sleep function for delays
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
+// Bubble Sort
 async function bubbleSort() {
-    let len = array.length;
-    for (let i = 0; i < len; i++) {
-        for (let j = 0; j < len - i - 1; j++) {
+    const speed = parseInt(document.getElementById('speedSelect').value);
+    for (let i = 0; i < array.length; i++) {
+        for (let j = 0; j < array.length - i - 1; j++) {
             if (array[j] > array[j + 1]) {
-                await swapAndVisualize(j, j + 1);
+                [array[j], array[j + 1]] = [array[j + 1], array[j]];
+                await sleep(speed);
+                visualizeArray(array);
             }
         }
     }
 }
 
+// Insertion Sort
 async function insertionSort() {
-    let len = array.length;
-    for (let i = 1; i < len; i++) {
+    const speed = parseInt(document.getElementById('speedSelect').value);
+    for (let i = 1; i < array.length; i++) {
         let key = array[i];
         let j = i - 1;
+
         while (j >= 0 && array[j] > key) {
             array[j + 1] = array[j];
             j--;
-            await sleep(50);
+            await sleep(speed);
             visualizeArray(array);
         }
         array[j + 1] = key;
-        await sleep(50);
+        await sleep(speed);
         visualizeArray(array);
     }
 }
 
+// Merge Sort Wrapper
 async function mergeSortWrapper() {
     array = await mergeSort(array);
 }
 
+// Merge Sort
 async function mergeSort(arr) {
     if (arr.length < 2) return arr;
 
@@ -76,7 +98,9 @@ async function mergeSort(arr) {
     return await merge(left, right);
 }
 
+// Merge Helper Function
 async function merge(left, right) {
+    const speed = parseInt(document.getElementById('speedSelect').value);
     let result = [];
     let i = 0, j = 0;
 
@@ -92,49 +116,46 @@ async function merge(left, right) {
 
     result = result.concat(left.slice(i)).concat(right.slice(j));
     array = result;
-    await sleep(100);
+    await sleep(speed);
     visualizeArray(array);
     return result;
 }
 
+// Quick Sort Wrapper
 async function quickSortWrapper() {
     await quickSort(array, 0, array.length - 1);
 }
 
+// Quick Sort
 async function quickSort(arr, low, high) {
     if (low < high) {
-        let pi = await partition(arr, low, high);
+        const pi = await partition(arr, low, high);
         await quickSort(arr, low, pi - 1);
         await quickSort(arr, pi + 1, high);
     }
 }
 
+// Partition Helper Function for Quick Sort
 async function partition(arr, low, high) {
+    const speed = parseInt(document.getElementById('speedSelect').value);
     let pivot = arr[high];
     let i = low - 1;
 
     for (let j = low; j < high; j++) {
         if (arr[j] < pivot) {
             i++;
-            await swapAndVisualize(i, j);
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+            await sleep(speed);
+            visualizeArray(arr);
         }
     }
-
-    await swapAndVisualize(i + 1, high);
+    [arr[i + 1], arr[high]] = [arr[high], arr[i + 1]];
+    await sleep(speed);
+    visualizeArray(arr);
     return i + 1;
 }
 
-async function swapAndVisualize(i, j) {
-    [array[i], array[j]] = [array[j], array[i]];
-    await sleep(100);
-    visualizeArray(array);
-}
-
-function sleep() {
-    const speed = parseInt(document.getElementById('speedSelect').value); // Get selected speed
-    return new Promise(resolve => setTimeout(resolve, speed));
-}
-
+// Start Sorting
 function StartSort() {
     const algorithm = document.getElementById('AlgorithmSelect').value;
     if (typeof window[algorithm] === 'function') {
