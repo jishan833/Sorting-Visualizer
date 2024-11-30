@@ -1,8 +1,9 @@
 let array = [];
 
-function randomizeArray() {
-    const size = parseInt(document.getElementById('arraySizeSelect').value);
-    array = Array.from({ length: size }, () => Math.floor(Math.random() * 50) + 1); // Random values between 1-50
+function generateArray() 
+{
+    const arrayInput = document.getElementById('arrayInput').value;
+    array = arrayInput.split(',').map(Number);
     visualizeArray(array);
 }
 
@@ -15,6 +16,18 @@ function visualizeArray(arr) {
         const bar = document.createElement('div');
         bar.classList.add('bar');
         bar.style.height = `${value * 10}px`; 
+        bar.style.position = 'relative'; 
+        bar.style.color = 'white'; 
+        bar.style.fontSize = '15px'; 
+        bar.style.textAlign = 'center'; 
+        
+        const number = document.createElement('div');
+        number.innerText = value;
+        number.style.position = 'absolute';
+        number.style.bottom = '1'; 
+        number.style.width = '100%';
+        
+        bar.appendChild(number); 
         bar.style.backgroundColor = barColor; // Apply the selected color
         container.appendChild(bar);
     });
@@ -122,7 +135,7 @@ function sleep() {
     return new Promise(resolve => setTimeout(resolve, speed));
 }
 
-function startSort() {
+function StartSort() {
     const algorithm = document.getElementById('algorithmSelect').value;
     if (typeof window[algorithm] === 'function') {
         window[algorithm](); // Dynamically call the selected sorting function
