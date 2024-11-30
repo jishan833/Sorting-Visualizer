@@ -11,26 +11,26 @@
     <div class="controls">
         <input type="text" id="arrayInput" placeholder="Enter numbers separated by commas" />
         <button onclick="generateArray()">Generate Array</button>
-    <select id="AlgorithmSelect">
-        <option value="bubbleSort">Bubble Sort</option>
-        <option value="insertionSort">Insertion Sort</option>
-        <option value="mergeSortWrapper">Merge Sort</option>
-        <option value="quickSortWrapper">Quick Sort</option>
-    </select>
-
-    <select id="speedSelect">
-        <option value="50">Fast</option>
-        <option value="100">Medium</option>
-        <option value="200">Slow</option>
-    </select>
-
-    <select id="barColorSelect">
-        <option value="blue">Blue</option>
-        <option value="red">Red</option>
-        <option value="green">Green</option>
-    </select>
-
-    <button id="sortButton" onclick="StartSort()">Sort!</button>
-</div>
-
-<p>Feeling lazy? It's OK, just click Sort!</p>
+        <select id="AlgorithmSelect">
+            <option value="bubbleSort">Bubble Sort</option>
+            <option value="insertionSort">Insertion Sort</option>
+            <option value="mergeSortWrapper">Merge Sort</option>
+            <option value="quickSortWrapper">Quick Sort</option>
+        </select>
+        <select id="speedSelect">
+            <option value="50">Fast</option>
+            <option value="100">Medium</option>
+            <option value="200">Slow</option>
+        </select>
+        <select id="barColorSelect">
+            <option value="blue">Blue</option>
+            <option value="red">Red</option>
+            <option value="green">Green</option>
+        </select>
+        <button id="sortButton" onclick="StartSort()">Sort!</button>
+    </div>
+    <p>Feeling lazy? It's OK, just click Sort!</p>
+    <div id="arrayContainer" class="array-container"></div>
+    <script src="script.js"></script>
+</body>
+</html>
