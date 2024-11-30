@@ -8,18 +8,34 @@
 </head>
 <body>
     <h1>Sorting Visualizer</h1>
-    
     <div class="controls">
-        <input type="text" id="arrayInput" placeholder="Enter numbers separated by commas" />
-        <button onclick="generateArray()">Generate Array</button>
-        <button onclick="bubbleSort()">Bubble Sort</button>
-        <button onclick="insertionSort()">Insertion Sort</button>
-        <button onclick="mergeSortWrapper()">Merge Sort</button>
-        <button onclick="quickSortWrapper()">Quick Sort</button>
-    </div>
+    <select id="algorithmSelect">
+        <option value="bubbleSort">Bubble Sort</option>
+        <option value="insertionSort">Insertion Sort</option>
+        <option value="mergeSortWrapper">Merge Sort</option>
+        <option value="quickSortWrapper">Quick Sort</option>
+    </select>
 
-    <div class="array-container" id="arrayContainer"></div>
+    <select id="speedSelect">
+        <option value="50">Fast</option>
+        <option value="100">Medium</option>
+        <option value="200">Slow</option>
+    </select>
 
-    <script src="script.js"></script>
-</body>
-</html>
+    <select id="arraySizeSelect">
+        <option value="15">15</option>
+        <option value="30">30</option>
+        <option value="50">50</option>
+    </select>
+
+    <select id="barColorSelect">
+        <option value="blue">Blue</option>
+        <option value="red">Red</option>
+        <option value="green">Green</option>
+    </select>
+
+    <button id="randomizeArray" onclick="randomizeArray()">Randomize Array</button>
+    <button id="sortButton" onclick="startSort()">Sort!</button>
+</div>
+
+<p>Feeling lazy? It's OK, just click Sort!</p>
